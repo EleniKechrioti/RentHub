@@ -1,7 +1,7 @@
 {
-  "name": "inf165-webdev-project",
+  "name": "wiki-ads",
   "version": "1.0.0",
-  "description": "Template project for webdev assignment 2",
+  "description": "Wiki Ads webpage",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bzafiris/inf165-webdev-project.git"
+    "url": "git+https://github.com/EleniKechrioti/Wiki-ads.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bzafiris/inf165-webdev-project/issues"
+    "url": "https://github.com/EleniKechrioti/Wiki-ads/issues"
   },
-  "homepage": "https://github.com/bzafiris/inf165-webdev-project#readme",
+  "homepage": "https://github.com/EleniKechrioti/Wiki-ads#readme",
   "dependencies": {
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
