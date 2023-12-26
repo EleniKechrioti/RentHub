@@ -1,5 +1,497 @@
-/* Put your CSS stylesheets here */
-
-h1 {
-    color: blue;
+/*-----------------------HEADER-----------------------*/
+/*set font to header*/
+header{
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+/*set background photo for main header only*/
+body>header{
+    background: url(../assets/header.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.logo{
+    display: flex;
+    justify-content: space-between;
+}
+/*set subtle different font for header h2 and margin to 
+set distance*/
+header h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0.3em;
+}
+/*set distance between title and subtitle*/
+h3{
+    margin: 1em;
+}
+
+    /*-----------------Navigation-----------------*/
+
+    /*navigation container in lower header, sets 
+        - the position of the lower header stable
+        - background color slightly transparent
+        - overflow of the header (sign up dropdown) visible*/
+    .lower-header>nav>ul{
+        position: sticky;
+        top: 1em;
+        overflow: visible;
+        background-color: rgba(58, 85, 59, 0.788);
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        clear:left;
+    }
+    /*aligns the links inside the lower header to the center,
+    adds a border around them, sets their width to fit screen size */
+    .lower-header a{
+        float: left;
+        font-size: 16px;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        flex-grow: 1;
+    }
+    /*sets overflow of the dropdown hidden at first*/
+    .dropdown {
+        float: left;
+        align-items: stretch;
+        overflow: hidden;
+        flex-grow: 1;
+    }
+    /*sets button to look alike the rest of the navigation links
+    and not like a button*/
+    .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    /*adds the same color as the background, with a little shadow 
+    to show the "dropdown", display hidden*/
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgb(58,85,59);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        padding: 12px 16px;
+    }
+    /*structural code design(content is a list anyway)*/
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+/*-----------------------BODY-----------------------*/
+/*sets background color, color, font and size for the texts*/
+body{
+    background-color: rgb(58,85,59);
+    color:black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.15em;
+}
+/*removes default underline from links*/
+a{
+    text-decoration: none;
+}
+/*sets color for the links to black*/
+a:link{
+    color:black;
+}
+/*sets color for the visited links */
+a:visited{
+    color:rgb(33, 32, 32)
+}
+/*sets color to links you hover*/
+a:hover{
+    color:blueviolet;
+}
+/*remove any default decoration to lists*/
+ul{
+    list-style-type: none;
+    padding:0%;         /*aligns the items in the start of the title*/
+    margin: 0%;          /*adds space betwwen title and list items*/
+}
+/*adds spacing between items and aligns items at the base line of the title*/
+li{
+    margin-bottom: 10px;    
+    align-items: baseline;  
+}
+
+/*align headers with fa icons to the center, and aligns them next to the title*/
+.header-with-icon{
+    display: inline-flex;
+    align-items: center;
+    margin: 0 auto   
+}
+/*add space to the icon and the text*/
+.header-with-icon i {
+    margin-right: 5%; 
+    display: inline-flex;
+}
+/*aligns items as a grid with 3 columns*/
+#categories{
+    margin:10px;
+    padding:0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+/*lets items floating to the left and adds space between the header and the list*/
+.nav-flow{
+    float: left;
+    width: 50%; 
+    box-sizing:border-box;
+    padding: 0%;
+    margin: 5%;
+}
+
+.nav-flow::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/*adds color to header of main categories when hovered */
+#realestate:hover{ color: #65b345;}
+#vehicles:hover{color:#bf3c28;}
+#technology:hover{color:#fab414;}  
+#employment:hover{color:#5683c6;} 
+
+/*adds space between each listing and aligns them next to each other for row visual*/
+.group-listing{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+/*adds border around the listing, space between each items and shadow transition 
+for when hovered*/
+.listing{
+    float: left;
+    width: 50%; 
+    box-sizing:border-box;
+    padding: 1%; 
+    margin: 5%;
+    border: 3px groove antiquewhite;
+    border-radius: 5px;
+    transition: box-shadow 0.3s;
+}
+/*adds color to the shadow*/
+.listing:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*color of the link for every listing stays black as the text*/
+.listing>a:hover{
+    color:black;}
+/*adds space between each photo*/
+.slide{
+    margin:5px;
+}
+/*aligns images to the middle*/
+img {vertical-align: middle;}
+
+/*places them, adds transition for when hovered*/
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+/*stays relative to its normal position*/
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+* {box-sizing: border-box}
+/*sets width for all slide images to 100%*/
+.slide img{
+    width:100%;
+}
+/*adds color behind the "button" image when its active and when its hovered*/
+.active, .dot:hover {
+    background-color: #717171;
+}
+/*sets width and height of each button dot, and adds transition for when hovered*/
+.dot {
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+    margin: 0 2px;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+/*-----------------------FOOTER-----------------------*/
+/*basic distances, verrides can be made*/
+*{
+	padding: 0;
+	margin: 0;
+} 
+/*adjusting whole footer area*/
+footer{
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(to right, #030825, #3a553b);
+    color: #fff;
+    font-size: 13px;
+    padding: 10px 0 10px;
+    line-height: 20px;
+    margin-top: 80px;
+    box-sizing: border-box;
+    font: 14px sans-serif;
+}
+/*adjusting the columns as one area*/
+.row{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+/*adjusting every column seperetally*/
+.col{
+    flex-basis: 25%;
+    padding: 10px;
+}
+/*adjusting the flex-basis of 2nd and 3rd column so we have evenly columns. Overwrite .col for 2nd-3rd*/
+.col:nth-child(2), .col:nth-child(3){
+    flex-basis: 15%;
+}
+/*adjusting the titles of the columns*/
+.col h3{
+    width: fit-content;
+    font: normal 20px 'Cookie', cursive;    
+    margin-bottom: 40px;
+    position: relative;
+}
+/*adjusting the mini images*/
+i.fa{
+	font-size: 20px;
+	line-height: 40px;
+}
+/*adjusting the envelope image because was bigger than the other images*/
+i.fa-envelope{
+	font-size: 18px;
+	line-height: 38px;
+}
+/*adjusting the secondary titles*/
+ul li a{
+    text-decoration: none;
+    color: white;
+}
+/*adjusting whole form*/
+form{
+    display: flex;
+    padding-bottom: 15px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 50px;
+}
+/*adjusting mini images of form*/
+form .fa{
+    font-size: 18px;
+    margin-right: 10px;
+}
+/*adjusting form input area*/
+form input{
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+    border: 0;
+    outline: none;
+}
+/*adjusting form button*/
+form button{
+    background: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+/*adjusting the mini image of form button*/
+form button .fa{
+    font-size: 25px;
+    color: #ccc;
+}
+/*adjusting the mini images for social media*/
+.social-media .fa-brands{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #0a0a0a;
+    background: #fff;
+    margin-right: 15px;
+    cursor: pointer;
+}
+/*adjusting the line under ro columns*/
+hr{
+    width: 90%;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    margin: 20px auto;
+}
+/*adjusting the copyright text*/
+.copyright{
+    text-align: center;
+    font: 14px Serif;
+}
+/*adjusting the line under the title of each column*/
+.underline{
+    width: 100%;
+    height: 5px;
+    background: #767676;
+    border-radius: 3px;
+    position: absolute;
+    top: 25px;
+    left: 0px;
+}
+
+
+/*-----------------------FORMS-----------------------*/
+/*makes text area distinct*/
+fieldset>textarea {
+    width: 100%;
+    height: 7rem;
+    padding: 2px 4px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 1.2rem;
+    resize: none;
+    text-align: left;
+}
+/*align left and center textbox children*/
+.textbox>*{
+    text-align: left;
+    align-self: center;
+    margin: 5%;
+    padding: 0;
+    display: block;
+}
+/*adds border to make visibly distinct the input area*/
+fieldset>input{
+    border:3px solid #555; 
+    box-sizing: border-box; 
+    color: #0a0a0a;
+}
+
+/*makes every fieldset slightly distinct*/
+fieldset{
+    background-color: rgba(46, 66, 47, 0.255);
+    border-style: solid;
+    border-color:rgb(58,85,59);
+    padding: 3%;
+    border-radius: 1.5em;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+}
+/*increase the width of the input fields*/
+fieldset>input {
+    width: 60%;
+}
+/*center fieldset children*/
+fieldset>* {
+    display: block;
+    text-align: left;
+    align-self: center;
+}
+/*all the text be in the center*/
+fieldset summary,
+fieldset details,
+fieldset>p {
+    text-align: center;
+}
+/*makes explaination text smaller*/
+fieldset>details>p{
+    font-size: 0.9rem;
+}
+/*space between fieldsets*/
+fieldset>label {
+    margin-top: 1.5em;
+}
+/*makes bigger the fieldset title*/
+fieldset>legend {
+    font-size: 150%;
+    font-weight: 400;
+}
+/*add space*/
+form{padding: 5%;}
+.rating {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.rating input[type=radio] {
+    display: none;
+}
+.rating img:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.rating input[type=radio]:checked+label>img {
+    opacity: 1;
+    filter: brightness(80%);
+}
+.textbox .rating img {
+    vertical-align: middle;
+    width: 100%;
+    aspect-ratio: 1;
+}
+#img{width:50%;}
+#experience-3>label>img{width:10%;}
+
+/*-----------------------BIOS-----------------------*/
+/*add space between each item*/
+#bios{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin:4%;
+    padding: 3%;
+}
+/*adjusting the bios textbox so the fonts, distances, backrounds etc are uniform*/
+#bios>.textbox{
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    background-color: rgb(98, 143, 100);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin:2%;
+    padding: 1.5em;
+    border-radius: 1em;
+    box-shadow: 0em 0em 0.2em 0.4em rgba(0, 37, 138, 0.05);
+    overflow: hidden;
+}
+
+img {
+    overflow: clip;
+}
+/*adjusting the diastance between the textbox image and the othr objects*/
+.textbox img{
+    float: left;
+    margin-right: 3.7%;
+    margin-left: 4%;
+    margin-bottom: 3.5%;}
