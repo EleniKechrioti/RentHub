@@ -12,9 +12,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="js/main.js"></script>
+        
         <link rel="icon" href="assets/logo.png" type="image/x-icon">
-    </head>
 
+        <script id="categories-template" type="text/x-handlebars-template">
+            <article class="category-list">
+                {{#each categories}} 
+                    <article class="textbox">
+                        <h3>{{title}}</h3>
+                        <a href="category.html?id={{id}}">
+                            <img alt={{title}} src={{img_url}}>
+                        </a>
+                    </article>
+                {{/each}}
+            </article>
+        </script>
+
+        
+    </head>
     <body>
         <!-----------------------------------------------header-tag------------------------------------------------>
         <header>
@@ -55,6 +72,10 @@
                 Η εμπειρία μας στον χώρο αυτόν ξεπερνά τα χρόνια, και είμαστε περήφανοι που έχουμε βοηθήσει αμέτρητους 
                 πελάτες να βρουν το ιδανικό επένδυμα για τις ανάγκες τους. 
             </p>
+
+        <article id="categories-container">
+        </article>
+        
         </main>
         <!-------------------------------------------------footer------------------------------------------------->
         <footer>
