@@ -20,11 +20,20 @@
         <script id="categories-template" type="text/x-handlebars-template">
             <article class="category-list">
                 {{#each categories}} 
-                    <article class="textbox">
+                    <article class="nav-flow">
                         <h3>{{title}}</h3>
                         <a href="category.html?id={{id}}">
                             <img alt={{title}} src={{img_url}}>
                         </a>
+                        {{#if subcategories.length}} <!-- Check if there are subcategories -->
+                            <ul>
+                                {{#each subcategories}}
+                                    <li>
+                                        <a href="subcategory.html?id={{id}}">{{title}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{/if}}
                     </article>
                 {{/each}}
             </article>
