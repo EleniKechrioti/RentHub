@@ -1,9 +1,12 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const port = 8080
+const port = 8081
 
 app.listen(port)
+const fs = require('fs');
+const { Session } = require('inspector');
+const { json } = require('express');
 
 /* 
     Serve static content from directory "public",
@@ -11,6 +14,8 @@ app.listen(port)
     e.g. http://localhost:8080/index.html
 */
 app.use(express.static('public'))
+
+const root = path.join(__dirname, 'public');
 
 // parse url-encoded content from body
 app.use(express.urlencoded({ extended: false }))
@@ -22,10 +27,12 @@ app.use(express.json())
 app.get('/', function(req, res){
 
     var options = {
-        root: path.join(__dirname, 'public')
+        root
     }
 
-    res.sendFile('index.html', options, function(err){
-        console.log(err)
-    })
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
+
+app.listen(port, () => {
+    console.log(`API listening at http://localhost:${port}`)
 })
