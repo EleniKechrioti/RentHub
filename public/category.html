@@ -13,32 +13,31 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/category.js"></script>
         
         <link rel="icon" href="assets/logo.png" type="image/x-icon">
 
-        <script id="categories-template" type="text/x-handlebars-template">
+        <script id="subcategory-template" type="text/x-handlebars-template">
+            <h2>{{name}}</h2>
             <article class="category-list">
-                {{#each categories}} 
-                    <article class="nav-flow">
-                        <h3>{{title}}</h3>
+                {{#each ads}}
+                    <article class="category">
+                        <h3>
+                            {{title}}
+                        </h3>
                         <a href="category.html?id={{id}}">
-                            <img alt={{title}} src={{img_url}}>
+                            <img alt={{title}} src={{firstimage}} width="30%">
                         </a>
-                        {{#if subcategories.length}} <!-- Check if there are subcategories -->
-                            <ul>
-                                {{#each subcategories}}
-                                    <li>
-                                        <a href="subcategory.html?id={{id}}">{{title}}</a>
-                                    </li>
-                                {{/each}}
-                            </ul>
-                        {{/if}}
+                        <p>{{description}}</p>
+    
+                        <div class="product-footer">
+                            <var>{{cost}}$</var>
+                        </div>
                     </article>
                 {{/each}}
             </article>
         </script>
-
+        
         
     </head>
     <body>
@@ -73,7 +72,17 @@
         </header>
         <!------------------------------------------------main-tag------------------------------------------------->
         <main>
-
+            <article id="store-container" class="navigable-container">
+                <article id="products-container">
+                    <!-- Handlebars content goes here -->
+                </article>
+                
+                <div id="sidebar">
+                    <nav id="subcategories-menu">
+                        <!-- Handlebars content goes here-->
+                    </nav>
+                </div>
+            </article>
         </main>
         <!-------------------------------------------------footer------------------------------------------------->
         <footer>
