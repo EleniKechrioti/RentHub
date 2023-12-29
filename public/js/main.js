@@ -26,15 +26,47 @@ window.onload = function() {
             .then(response => response.json())
             .then(data => {
                 fetched_data = parseData(data);
+                list_subcategories();
+            });
+    }
+
+    function list_subcategories() {
+        let subcategoriesUrl = "https://wiki-ads.onrender.com/subcategories";
+        let headers = new Headers();
+        headers.append('Accept', 'application/json');
+        let init = {
+            method: 'GET',
+            headers: headers
+        };
+        fetch(subcategoriesUrl, init)
+            .then(response => response.json())
+            .then(subcategoriesData => {
+                // Map subcategories to their respective categories
+                fetched_data.categories.forEach(category => {
+                    category.subcategories = getSubcategoriesForCategory(subcategoriesData, category.id);
+                });
+    
+                // Render categories and subcategories
                 renderCategories();
             });
+    }
+
+    function getSubcategoriesForCategory(subcategoriesData, categoryId) {
+        return subcategoriesData
+            .filter(subcategory => subcategory.category_id === categoryId)
+            .map(subcategory => ({
+                id: subcategory.id,
+                title: subcategory.title
+                // Add more properties if needed
+            }));
     }
 
     function parseData(data) {
         var categories_arr = data.map(category => ({
             id: category.id,
             title: category.title,
-            img_url: ("https://wiki-ads.onrender.com/" + category.img_url)
+            img_url: ("https://wiki-ads.onrender.com/" + category.img_url),
+            subcategories: []
         }));
 
         return { categories: categories_arr };
