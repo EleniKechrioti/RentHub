@@ -3,14 +3,17 @@ const urlParams = new URLSearchParams(queryString);
 let id = urlParams.get('id');
 console.log(id);
 
-window.onload = function() {
 var fetched_data;
-const SUBCATEGORY_TEMPLATE = Handlebars.compile(document.getElementById("subcategory-template").innerHTML);
-const CATEGORY_CONTAINER = document.getElementById("products-container");
+var SUBCATEGORY_TEMPLATE;
+var CATEGORY_CONTAINER;
 
-const html = SUBCATEGORY_TEMPLATE(fetched_data);
-CATEGORY_CONTAINER.innerHTML = html;
-console.log(CATEGORY_CONTAINER.innerHTML);
+window.onload= function() {
+    SUBCATEGORY_TEMPLATE = Handlebars.compile(document.getElementById("subcategory-template").innerHTML);
+    CATEGORY_CONTAINER = document.getElementById("products-container");
+
+    list_ads();
+};
+
 
 function renderCategories() {
     if (CATEGORY_CONTAINER) {
@@ -22,8 +25,7 @@ function renderCategories() {
     }
 }
 
-
-function list_ads(filter){
+function list_ads(){
     let url = "https://wiki-ads.onrender.com/ads?category="+id;
     let headers = new Headers();
     let init = {
@@ -54,12 +56,9 @@ function parseAds(data){
         tmp.cost = ads.cost;
         tmp.image = ads.images;
         tmp.firstimage = "https://wiki-ads.onrender.com/"+ads.images[0];
-        tmp.feautures = ads.feautures;
+        tmp.features = ads.features ? ads.features.split(';') : [];
         ads_arr.push(tmp);
     }
     ads["ads"] = ads_arr;
     return ads;
 }
-list_ads();
-
-};
