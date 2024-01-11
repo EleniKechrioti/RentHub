@@ -25,9 +25,25 @@
                         <h3>
                             {{title}}
                         </h3>
-                        <a href="category.html?id={{id}}">
-                            <img alt={{title}} src={{firstimage}} width="30%">
-                        </a>
+                        <div class="slideshow-container">
+                            {{#each image}}
+                                {{#if @first}}
+                                    <div class="slide" style="display: block;">
+                                        <a href="category.html?id={{../id}}">
+                                            <img alt={{../title}} src={{this}} width="30%" data-slide-number={{addOne @index}}>
+                                        </a>
+                                    </div>
+                                {{else}}
+                                    <div class="slide" style="display: none;">
+                                        <a href="category.html?id={{../id}}">
+                                            <img alt={{../title}} src={{this}} width="30%" data-slide-number={{addOne @index}}>
+                                        </a>
+                                    </div>
+                                {{/if}}
+                            {{/each}}
+                            <a class="prev" onclick="prevSlide(this)">❮</a>
+                            <a class="next" onclick="nextSlide(this)">❯</a>
+                        </div>
                         <p>{{description}}</p>
                         {{#if features.length}}
                             <table border="1">
