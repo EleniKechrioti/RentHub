@@ -25,9 +25,12 @@
                         <h3>
                             {{title}}
                         </h3>
-                        <a href="category.html?id={{id}}">
+                        <a href="category.html?id={{subcategory_id}}">
                             <img alt={{title}} src={{firstimage}} width="30%">
                         </a>
+                        <button class="favorite-button" id='{{@index}}'onclick=addToFavorites({{@index}})> <!--  -->
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
                         <p>{{description}}</p>
     
                         <div class="product-footer">
@@ -115,6 +118,12 @@
                                     </li>
                                 </section>
                             </section>
+                        </li>
+                        <li>
+                            <!-- <a href='favorites-ads.html?username={{username}}&sessionId={{sessionId}}' onclick=goToCart()> 
+                                Αγαπημένα<i class="fa-regular fa-heart"></i>
+                            </a>-->
+                            <button onclick=goToCart()>Αγαπημένα<i class="fa-regular fa-heart"></i></button>
                         </li>
                     </ul>
                 </nav>
