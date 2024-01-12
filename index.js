@@ -86,6 +86,7 @@ app.patch('/add_favorites',(req,res)=>{
         user.updateOne({username:username}, updateDocument).then(result=>{
             res.status(200).send(result);
         }).catch(err=>{
+            console.log(err);
             res.status(500).send(err);
         });
     //}
