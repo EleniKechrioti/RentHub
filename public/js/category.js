@@ -125,10 +125,11 @@ function addToFavorites(index){
         alert("Παρακαλώ συνδεθείτε για προσθήκη στη λίστα αγαπημένων.");
         return;
     }
-    let tmpToc = logged_in;
-    let toc = JSON.parse(JSON.stringify(tmpToc));
+    let tmpToc = logged_in._doc;
+    let toc = tmpToc;
     let tmp_product = fetched_data.ads[index];
     let product = JSON.parse(JSON.stringify(tmp_product));
+    console.log(toc);
     
     let exists = false;
 
@@ -139,6 +140,7 @@ function addToFavorites(index){
     if (listings && listings.length) {
     for(let i = 0;i<listings.length;i++){
         if(listings[i].title===product.title){
+            alert("Η αγγελία βρίσκεται ήδη στη λίστα αγαπημένων.");
             exists=true;
             break;
         }
@@ -164,14 +166,13 @@ function addToFavorites(index){
     .then(response =>response.json())
     .then(data =>{
         logged_in =data;
-        //console.log(logged_in.cart);
     }).catch(error =>{
         console.log("error on login",error)
     });
 
 }
 
-function goToCart() {
+function goToFavorites() {
     if(!logged_in){
         alert("Παρακαλώ συνδεθείτε για δείτε τη λίστα αγαπημένων.");
         return;
@@ -179,13 +180,5 @@ function goToCart() {
     const encodedUsername = encodeURIComponent(logged_in._doc.username);
     const encodedSessionId = encodeURIComponent(logged_in.sessionId);
 
-    // Μετάβαση στη νέα σελίδα με τα κωδικοποιημένα δεδομένα στο URL
     window.location = `${HOST_URL}/favorites-ads.html?username=${encodedUsername}&sessionId=${encodedSessionId}`;
-
-    // data = parseCreds(logged_in);
-
-    // const params = {username: data.username, sessionId: data.sessionId}
-    // const searchParams = new URLSearchParams(params)
-
-    // window.location = `${HOST_URL}/favorites-ads.html?${searchParams}`
 }
