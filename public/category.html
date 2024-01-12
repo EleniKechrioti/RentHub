@@ -40,54 +40,6 @@
                 {{/each}}
             </article>
         </script>
-        <style>
-            #login {
-                position: sticky;
-                float: right;
-                top: 20px;
-                right: 20px; 
-                width: 200px; 
-                background-color: #f2f2f2;
-                padding: 10px;
-                border-radius: 5px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                z-index: 1;
-            }
-
-            #login fieldset {
-                border: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            #login label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            #login input {
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 16px;
-                box-sizing: border-box;
-            }
-
-            #login button {
-                background-color: #4CAF50;
-                color: black;
-                padding: 10px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                width: 100%;
-            }
-
-            #login button:hover {
-                background-color: #45a049;
-            }
-
-        </style>
-        
     </head>
     <body>
         <!-----------------------------------------------header-tag------------------------------------------------>
@@ -120,9 +72,6 @@
                             </section>
                         </li>
                         <li>
-                            <!-- <a href='favorites-ads.html?username={{username}}&sessionId={{sessionId}}' onclick=goToCart()> 
-                                Αγαπημένα<i class="fa-regular fa-heart"></i>
-                            </a>-->
                             <button onclick=goToFavorites()>Αγαπημένα<i class="fa-regular fa-heart"></i></button>
                         </li>
                     </ul>
@@ -140,7 +89,6 @@
                     
                         <label for="password"><b>Password</b></label>
                         <input type="password" id="password" placeholder="Enter Password" name="password" required>
-                        <!-- <button onclick="login()">Login</button> -->
                         <button type="submit">Login</button>
                     </fieldset>
                 </form>
