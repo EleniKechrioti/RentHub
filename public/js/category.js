@@ -1,3 +1,5 @@
+//import { User } from "./models/user.js"
+const HOST_URL = "http://localhost:8080"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let id = urlParams.get('id');
@@ -6,12 +8,13 @@ console.log(id);
 var fetched_data;
 var SUBCATEGORY_TEMPLATE;
 var CATEGORY_CONTAINER;
+var logged_in;
 
 window.onload= function() {
     SUBCATEGORY_TEMPLATE = Handlebars.compile(document.getElementById("subcategory-template").innerHTML);
     CATEGORY_CONTAINER = document.getElementById("products-container");
-
     list_ads();
+
 };
 
 
@@ -61,4 +64,128 @@ function parseAds(data){
     }
     ads["ads"] = ads_arr;
     return ads;
+}
+
+
+// -----------------------------------------------------------------
+
+window.addEventListener('load', (event) => {
+    const login_form = document.getElementById('loginForm');
+    login_form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const formData = new FormData(login_form);
+        const username = formData.get('username');
+        const password = formData.get('password');
+        fetch('/login',{
+            method:'POST',
+            body: JSON.stringify({username,password}),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(response =>response.json())
+        .then(data =>{
+            logged_in=data;
+           
+            data_logged = parseCreds(data);
+            console.log(data_logged);
+
+            console.log(data);
+            if(data.status=="FAIL"||(username==""||password=="")){
+                alert("Please check your username or password");
+                
+            }else{
+                alert("Welcome"+"\n"+username);
+            }
+        }).catch(error =>{
+            console.log("error on login",error);
+            alert("Please signup");
+        });
+    })
+});
+
+function parseCreds(data){
+    var creds = {};
+    var creds_arr = []; 
+    if(data.sessionId==undefined){return;}
+    var tmp ={};
+    tmp.id = data._id;
+    tmp.sessionId = data.sessionId;
+    tmp.username = data._doc.username;
+    tmp.password = data._doc.password;
+    tmp.favorites = data._doc.favorites;
+    creds_arr.push(tmp);
+    creds['creds'] = creds_arr;
+    return creds;
+}
+
+
+function addToFavorites(index){
+    if(!logged_in){
+        alert("Παρακαλώ συνδεθείτε για προσθήκη στη λίστα αγαπημένων.");
+        return;
+    }
+    let tmpToc = logged_in;
+    let toc = JSON.parse(JSON.stringify(tmpToc));
+    let tmp_product = fetched_data.ads[index];
+    let product = JSON.parse(JSON.stringify(tmp_product));
+    
+    let exists = false;
+
+    let listings = toc.favorites;
+    if (!listings) {
+        listings = toc.favorites = [];
+    }
+    if (listings && listings.length) {
+    for(let i = 0;i<listings.length;i++){
+        if(listings[i].title===product.title){
+            exists=true;
+            break;
+        }
+    }}else{exists=false;}
+    if(!exists){
+        listings.push({
+            id: product.id,
+            description: product.description,
+            title: product.title,
+            cost: product.cost,
+            image:product.firstimage
+        });
+        
+    }
+ 
+    fetch('/add_favorites',{
+        method:'PATCH',
+        body: JSON.stringify(toc),
+        headers:{
+            'Content-Type':'application/json'
+        }
+    })
+    .then(response =>response.json())
+    .then(data =>{
+        logged_in =data;
+        //console.log(logged_in.cart);
+    }).catch(error =>{
+        console.log("error on login",error)
+    });
+
+}
+
+function goToCart() {
+    if(!logged_in){
+        alert("Παρακαλώ συνδεθείτε για δείτε τη λίστα αγαπημένων.");
+        return;
+    }
+    const encodedUsername = encodeURIComponent(logged_in._doc.username);
+    const encodedSessionId = encodeURIComponent(logged_in.sessionId);
+
+    // Μετάβαση στη νέα σελίδα με τα κωδικοποιημένα δεδομένα στο URL
+    window.location = `${HOST_URL}/favorites-ads.html?username=${encodedUsername}&sessionId=${encodedSessionId}`;
+
+    // data = parseCreds(logged_in);
+
+    // const params = {username: data.username, sessionId: data.sessionId}
+    // const searchParams = new URLSearchParams(params)
+
+    // window.location = `${HOST_URL}/favorites-ads.html?${searchParams}`
 }
