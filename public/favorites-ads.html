@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!--------------------------------------------------title-------------------------------------------------->
+        <title>RentHub</title>
+        <!------------------------------------------------meta-tags------------------------------------------------>
+        <meta charset = "UTF-8">
+        <meta name = "description" content = "Εξευρευνείστε τον μεγάλο μας κατάλογο ακινήτων, αυτοκινήτων, ειδών τεχνολογίας και θέσεων εργασίας. Βρείτε αυτό που ψάχνετε εύκολα και απλά σε ένα μόνο πάτημα!">
+        <meta name = "keywords" content = "ενοικιάσεις, πωλήσεις, ακίνητα, οχήματα, ενοικιάσεις ακινήτων, πωλήσεις ακινήτων, ενοικιάσεις οχημάτων, πωλήσεις οχημάτων, ενοικιάσεις αυτοκινήτων, πωλήσεις αυτοκινήτων, ενοικιάσεις μηχανών, πωλήσεις μηχανών, αγορά εργασίας, θέσεις εργασίας, δουλειά, τεχνολογία">
+        <meta name = "author" content = "Eleni Kechrioti, Maria Schoinaki">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="js/favorites-ads.js"></script>
+        
+        <link rel="icon" href="assets/logo.png" type="image/x-icon">
+
+        <script id="favorites-template" type="text/x-handlebars-template">
+            <h2>{{name}}</h2>
+            <article class="category-list">
+                {{#each items}}
+                    <article class="category">
+                        <h3>
+                            {{title}}
+                        </h3>
+                        <a href="category.html?id={{subcategory_id}}">
+                            <img alt={{title}} src={{image}} width="30%">
+                        </a>
+                        <p>{{description}}</p>
+    
+                        <div class="product-footer">
+                            <var>{{cost}}$</var>
+                        </div>
+                    </article>
+                {{/each}}
+            </article>
+        </script>
+        
+    </head>
+    <body>
+        <!-----------------------------------------------header-tag------------------------------------------------>
+        <header>
+            <div class = "logo">
+              <a href = "index.html"><img src = "assets/transparent_logo.png" width = "300px"></a>
+              <h3>RentHub</h3>
+            </div>
+            <div class = "lower-header">
+                <nav>
+                    <ul>
+                        <li><a href = "index.html">Αρχική</a></li>
+                        <li><a href = "categories.html">Κατηγορίες</a></li>
+                        <li><a href = "aboutus.html">Σχετικά με μας</a></li>
+                        <li><a href = "contactus.html">Επικοινωνία</a></li>
+                        <li>
+                            <section class="dropdown">
+                                <button class="dropbtn">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Ο λογαριασμός μου
+                                </button>
+                                <section class="dropdown-content">
+                                    <li><a href = "sign-up.html" >Δημιουργία</a></li>
+                                    <li><a href = "#">Σύνδεση</a></li>
+                                </section>
+                            </section>
+                        </li>
+                        <li>
+                            <a href = "favorites-ads.html"><i class="fa-regular fa-heart"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!------------------------------------------------main-tag------------------------------------------------->
+        <main>
+            <article id="products-container">
+                <!-- Handlebars content goes here -->
+            </article>
+        </main>
+        <!-------------------------------------------------footer------------------------------------------------->
+        <footer>
+            <div class="row">
+                <div class="col">
+                    <h3>About RentHub <div class="underline"></h3>
+                    <p>Η δημιουργία μιας ιστοσελίδας είναι πολύ περισσότερο από απλά κωδικοποίηση και σχεδιασμό, είναι η δημιουργία ενός 
+                    ψηφιακού κόσμου που αντικατοπτρίζει τη φύση και το όραμά μας. Στο <b>RentHub</b>, κατανοούμε τη σημασία της 
+                    δημιουργίας μιας ιστοσελίδας που εκφράζει την ταυτότητά μας και παρέχει μια ομαλή και ελκυστική εμπειρία στους 
+                    επισκέπτες μας. Είτε ψάχνετε για μια επαγγελματική ιστοσελίδα, ένα ηλεκτρονικό κατάστημα, είτε ένα blog, είμαστε
+                    εδώ για να σας βοηθήσουμε.
+                    </p>
+                </div>
+
+                <div class="col">
+                    <h3>Useful links <div class="underline"></h3>
+                    <ul>
+                        <li><i class="fa fa-home"></i>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li><i class="fa fa-users"></i>
+                            <a href="#">About us</a>
+                        </li>
+                        <li><i class="fa fa-address-book"></i>
+                            <a href="contactus.html">Contact us</a>
+                        </li>
+                        <li><i class="fa fa-book"></i>
+                            <a href="#">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3>Contact us <div class="underline"></h3>
+                    <ul>
+                        <li><i class="fa fa-envelope"></i>
+                            <p><a href="mailto:shinaki54@gmail.com">support@RentHub.gr</a></p>
+                        </li>
+                        <li><i class="fa fa-phone"></i>
+                            <p>+30 2108220905</p>
+                        </li>
+                        <li><i class="fa fa-map-marker"></i>
+                            <p>Πατησίων 76 10434 Αττική</p>
+                        </li>
+                    </ul>
+                </div>
+        
+                <div class="col">
+                    <h3>Newsletter <div class="underline"></h3>
+                    <form>
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" placeholder="Enter your email" required> 
+                        <button type="submit"><i class="fa fa-chevron-circle-right"></i></button>
+                    </form>
+                    <div class="social-media">
+                        <a href="https://www.facebook.com/profile.php?id=100045173225167"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/schoinaki_maria"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://twitter.com/?lang=el"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://join.skype.com/invite/csRu6qfrXVCz"><i class="fa-brands fa-skype"></i></a>
+                        <a href="mailto:shinaki54@gmail.com"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">© RentHub.gr|Μαρία Σχοινάκη - Ελένη Κεχριώτη 2023</p>
+        </footer>
+    </body>     
+</html>
