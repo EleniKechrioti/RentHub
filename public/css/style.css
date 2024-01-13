@@ -179,6 +179,13 @@ li{
     margin-top: 10px;
 }
 
+button{
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 0.9em;
+}
+
 #login {
     position: sticky;
     float: right;
