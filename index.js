@@ -33,9 +33,10 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
-//-------------------------------------------------------------------------
 const user = require('./models/user');
 const { log } = require('console');
+//-------------------------------------------------------------------------
+//Login Service
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -75,6 +76,7 @@ app.post('/login', (req, res) => {
     }
 });
 //-------------------------------------------------------------------------
+//AFS - Add to Favorites Service
 
 app.patch('/add_favorites',(req,res)=>{
     const username = req.body.username;
@@ -93,6 +95,7 @@ app.patch('/add_favorites',(req,res)=>{
 });
 
 //-------------------------------------------------------------------------
+//FRS - Favorites Retrieval Service
 
 app.post('/favorites_list',(req,res)=>{
     let{username,id}=req.body;
