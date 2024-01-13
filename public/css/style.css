@@ -158,6 +158,27 @@ li{
 #technology:hover{color:#fab414;}  
 #employment:hover{color:#5683c6;} 
 
+
+.ad-list, .section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+.image-desc{
+    display:grid;
+    grid-template-rows: 1fr;
+}
+.ad {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+}
+
+.ad-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
 #login {
     position: sticky;
     float: right;
