@@ -57,7 +57,6 @@ window.onload = function() {
             .map(subcategory => ({
                 id: subcategory.id,
                 title: subcategory.title
-                // Add more properties if needed
             }));
     }
 
